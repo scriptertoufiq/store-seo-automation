@@ -40,7 +40,10 @@ await page.getByLabel('', { exact: true }).fill('toufiq-automation-do-not-delete
 await page.waitForTimeout(500);
 
 // here has a issue with modal 
-
+const page3Promise = page.waitForEvent('popup');
+  await page.getByRole('button', { name: 'Log in' }).click();
+  const page3 = await page3Promise;
+await expect(page3.getByRole('link', { name: 'Log in to Shopify' })).toBeVisible();
 
 
 
