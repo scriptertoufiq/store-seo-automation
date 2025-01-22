@@ -76,4 +76,13 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
 
   });
 
+  test("Dashboard What New Section", async ({ page }) => {
+    await page.getByRole("link", { name: "StoreSEO" }).click();
+
+    let getDataDes = dashboardLocator.getByText("What's New");
+    await expect(getDataDes).toBeVisible();
+  });
+
+  
+
 });
