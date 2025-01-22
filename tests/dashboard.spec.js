@@ -55,4 +55,25 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
       await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/optimize-seo");
     }
   });
+
+  test("Dashboard Get App Embed Section", async ({ page }) => {
+    await page.getByRole("link", { name: "StoreSEO" }).click();
+
+    let getDataDes = dashboardLocator.getByText("To enable some advanced features (i.e., SEO Schema, Google verification, Noindex/Nofollow), you need to enable the App Embed for StoreSEO from your Shopify settings. Go to the settings page and follow the instructions to enable it.");
+    await expect(getDataDes).toBeVisible();
+
+    if (await getDataDes.isVisible()) {
+      await dashboardLocator.getByText(/App Embed Settings/).click();
+      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/settings/app-embed");
+    }
+    await page.waitForTimeout(10000);
+    let GetButtonTitle = dashboardLocator.getByText(/Enable app embed/);
+    if (await GetButtonTitle.isVisible()) {
+      await GetButtonTitle.click();
+    }
+
+
+
+  });
+
 });
