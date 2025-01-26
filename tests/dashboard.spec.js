@@ -143,4 +143,34 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
     }
   });
 
+  test("Dashboard Doc and Tutorial Section", async ({ page }) => {
+    await page.getByRole("link", { name: "StoreSEO" }).click();
+
+    await page.waitForTimeout(10000);
+    let docSection = dashboardLocator.getByText(/Stay tuned with StoreSEO/);
+    if (!(await docSection.isVisible())) {
+        throw new Error("The 'Stay tuned with StoreSEO' section is not visible.");
+    }
+    
+    let appFromStoreWare = dashboardLocator.getByText(/Others apps from Storeware/);
+    if (!(await appFromStoreWare.isVisible())) {
+        throw new Error("The 'Others apps from Storeware' section is not visible.");
+    }
+    
+    let guideSection = dashboardLocator.getByText(/Get our free Shopify SEO guide/);
+    if (!(await guideSection.isVisible())) {
+        throw new Error("The 'Get our free Shopify SEO guide' section is not visible.");
+    }
+    
+    let pageFly = dashboardLocator.getByText(/PageFly Page Builder/);
+    if (!(await pageFly.isVisible())) {
+        throw new Error("The 'PageFly Page Builder' section is not visible.");
+    }
+    
+    let thirdPartyApp = dashboardLocator.getByText(/Discover apps to add additional functionality/);
+    if (!(await thirdPartyApp.isVisible())) {
+        throw new Error("The 'Discover apps to add additional functionality' section is not visible.");
+    }
+  });
+
 });
