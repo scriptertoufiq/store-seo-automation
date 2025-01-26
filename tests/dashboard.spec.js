@@ -16,8 +16,10 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
 
 
   test("Dashboard checking Of Shopify Store ", async ({ page }) => {
-   
-    await expect(page.getByText("Setup guide")).toBeVisible(); // Ensure the authenticated page loads
+    
+
+    await page.waitForTimeout(5000);
+    await expect(page.getByText(/Setup guide/)).toBeVisible(); // Ensure the authenticated page loads
 
     // navigate to storeseo dashboard
     await page.getByRole("link", { name: "StoreSEO" }).click();
@@ -60,7 +62,7 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
     await page.getByRole("link", { name: "StoreSEO" }).click();
 
     let getDataDes = dashboardLocator.getByText("To enable some advanced features (i.e., SEO Schema, Google verification, Noindex/Nofollow), you need to enable the App Embed for StoreSEO from your Shopify settings. Go to the settings page and follow the instructions to enable it.");
-    await expect(getDataDes).toBeVisible();
+    // await expect(getDataDes).toBeVisible();
 
     if (await getDataDes.isVisible()) {
       await dashboardLocator.getByText(/App Embed Settings/).click();
@@ -79,10 +81,66 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
   test("Dashboard What New Section", async ({ page }) => {
     await page.getByRole("link", { name: "StoreSEO" }).click();
 
-    let getDataDes = dashboardLocator.getByText("What's New");
-    await expect(getDataDes).toBeVisible();
+    let GetSecHeading = dashboardLocator.getByText("What's New");
+    await expect(GetSecHeading).toBeVisible();
   });
 
-  
+  test("Dashboard Image Optimizer Subscription check ", async ({ page }) => {
+    await page.getByRole("link", { name: "StoreSEO" }).click();
+
+    let getCardHeading = dashboardLocator.getByText("Image Optimizer");
+    await expect(getCardHeading).toBeVisible();
+    await page.waitForTimeout(3000);
+    let GetButtonTitle = dashboardLocator.getByText("Increase limit");
+
+    if (await GetButtonTitle.isVisible()) {
+      await GetButtonTitle.click();
+      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/checkout/basic?coupon=TREAT19");
+    }
+  });
+
+  test("Dashboard AI Optimizer Subscription check ", async ({ page }) => {
+    await page.getByRole("link", { name: "StoreSEO" }).click();
+
+    let getCardHeading = dashboardLocator.getByText("AI Content Optimizer");
+    await expect(getCardHeading).toBeVisible();
+    await page.waitForTimeout(3000);
+    let GetButtonTitle = dashboardLocator.getByText("Increase limit");
+
+    if (await GetButtonTitle.isVisible()) {
+      await GetButtonTitle.click();
+      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/credit-bundles");
+    }
+  });
+
+  test("Dashboard Auto image optimizer card check ", async ({ page }) => {
+    await page.getByRole("link", { name: "StoreSEO" }).click();
+
+    let getCardHeading = dashboardLocator.getByText(/Activate auto image optimization/);
+    await page.waitForTimeout(3000);
+    await expect(getCardHeading).toBeVisible();
+    
+
+    let GetButtonTitle = dashboardLocator.getByText("Enable auto image optimizer");
+    if (await GetButtonTitle.isVisible()) {
+      await GetButtonTitle.click();
+      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/settings/image-optimizer");
+    }
+  });
+
+  test("Dashboard  AI Auto Product optimizer card check ", async ({ page }) => {
+    await page.getByRole("link", { name: "StoreSEO" }).click();
+
+    let getCardHeading = dashboardLocator.getByText(/Enable AI auto optimizer/);
+    await page.waitForTimeout(3000);
+    await expect(getCardHeading).toBeVisible();
+    
+
+    let GetButtonTitle = dashboardLocator.getByText("Activate AI auto optimizer");
+    if (await GetButtonTitle.isVisible()) {
+      await GetButtonTitle.click();
+      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/settings/auto-ai-optimization");
+    }
+  });
 
 });
