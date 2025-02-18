@@ -3,12 +3,13 @@ import path from 'path';
 require('dotenv').config();
 const email = process.env.EMAIL;
 const password = process.env.PASSWORD;
+const baseUrl = process.env.BASE_URL;
 
 const authFile = path.join(__dirname, '../playwright/.auth/user.json');
 
 setup('authenticate', async ({ page }) => {
     // Perform authentication steps. Replace these actions with your own.
-    await page.goto('https://admin.shopify.com/store/toufiq-automation-do-not-delete');
+    await page.goto(`${baseUrl}`);
     await page.getByLabel('Email').fill(email);
     await page.getByRole('button', { name: 'Continue with email' }).click();
     await page.waitForTimeout(40000);
@@ -20,7 +21,7 @@ setup('authenticate', async ({ page }) => {
     //
     // Sometimes login flow sets cookies in the process of several redirects.
     // Wait for the final URL to ensure that the cookies are actually set.
-    await page.waitForURL('https://admin.shopify.com/store/toufiq-automation-do-not-delete?country=BD');
+    await page.waitForURL(`${baseUrl}?country=BD`);
 
     // // Alternatively, you can wait until the page reaches a state where all cookies are set.
     await expect(page.getByText('Setup guide')).toBeVisible();

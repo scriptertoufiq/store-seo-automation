@@ -1,4 +1,7 @@
 const { test, expect } = require("@playwright/test");
+require('dotenv').config();
+const baseUrl = process.env.BASE_URL;
+
 
 test.use({ storageState: "playwright/.auth/user.json" });
 
@@ -7,7 +10,7 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
 
   test.beforeEach(async ({ page }) => {
     await page.goto(
-      "https://admin.shopify.com/store/toufiq-automation-do-not-delete"
+      `${baseUrl}`
     );
     await page.waitForLoadState("domcontentloaded"); // Better than fixed timeout
     dashboardLocator = page.frameLocator("iframe[name='app-iframe']");
@@ -39,7 +42,7 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
     let storeDet = dashboardLocator.getByText(/Store Details/);
     if (await storeDet.isVisible()) {
       await dashboardLocator.getByText(/View reports/).click();
-      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/reports");
+      await page.waitForURL(`${baseUrl}/apps/storeseo-2/reports`);
     }
   });
 
@@ -54,7 +57,7 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
 
     if (await getStarted.isVisible()) {
       await dashboardLocator.getByText(/Optimize your products/).click();
-      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/optimize-seo");
+      await page.waitForURL(`${baseUrl}/apps/storeseo-2/optimize-seo`);
     }
   });
 
@@ -66,7 +69,7 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
 
     if (await getDataDes.isVisible()) {
       await dashboardLocator.getByText(/App Embed Settings/).click();
-      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/settings/app-embed");
+      await page.waitForURL(`${baseUrl}/apps/storeseo-2/settings/app-embed`);
     }
     await page.waitForTimeout(10000);
     let GetButtonTitle = dashboardLocator.getByText(/Enable app embed/);
@@ -95,7 +98,7 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
 
     if (await GetButtonTitle.isVisible()) {
       await GetButtonTitle.click();
-      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/checkout/basic?coupon=TREAT19");
+      await page.waitForURL(`${baseUrl}/apps/storeseo-2/checkout/basic?coupon=TREAT19`);
     }
   });
 
@@ -109,7 +112,7 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
 
     if (await GetButtonTitle.isVisible()) {
       await GetButtonTitle.click();
-      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/credit-bundles");
+      await page.waitForURL(`${baseUrl}/apps/storeseo-2/credit-bundles`);
     }
   });
 
@@ -124,7 +127,7 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
     let GetButtonTitle = dashboardLocator.getByText("Enable auto image optimizer");
     if (await GetButtonTitle.isVisible()) {
       await GetButtonTitle.click();
-      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/settings/image-optimizer");
+      await page.waitForURL(`${baseUrl}/apps/storeseo-2/settings/image-optimizer`);
     }
   });
 
@@ -139,7 +142,7 @@ test.describe("Dashboard checking Of Shopify Store ", () => {
     let GetButtonTitle = dashboardLocator.getByText("Activate AI auto optimizer");
     if (await GetButtonTitle.isVisible()) {
       await GetButtonTitle.click();
-      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/settings/auto-ai-optimization");
+      await page.waitForURL(`${baseUrl}/apps/storeseo-2/settings/auto-ai-optimization`);
     }
   });
 

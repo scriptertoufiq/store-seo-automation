@@ -1,4 +1,6 @@
 const { test, expect } = require("@playwright/test");
+require('dotenv').config();
+const baseUrl = process.env.BASE_URL;
 
 test.use({ storageState: "playwright/.auth/user.json" });
 
@@ -7,7 +9,7 @@ test.describe("Go to Image Optimizer page  ", () => {
 
   test.beforeEach(async ({ page }) => {
     await page.goto(
-      "https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/image-optimizer"
+      `${baseUrl}/apps/storeseo-2/image-optimizer`
     );
     await page.waitForLoadState("domcontentloaded"); // Better than fixed timeout
     dashboardLocator = page.frameLocator("iframe[name='app-iframe']");
@@ -21,7 +23,7 @@ test.describe("Go to Image Optimizer page  ", () => {
     let GetButtonTitle = dashboardLocator.getByRole("link", { name: /Manage Settings/ });
     if (await GetButtonTitle.isVisible()) {
       await GetButtonTitle.click();
-      await page.waitForURL("https://admin.shopify.com/store/toufiq-automation-do-not-delete/apps/storeseo-2/settings/image-optimizer");
+      await page.waitForURL(`${baseUrl}/apps/storeseo-2/settings/image-optimizer`);
     }
     // navigate to storeseo Image optimizer dashboard again
     await page.getByRole("link", { name: "Image Optimizer" }).click();
@@ -35,6 +37,6 @@ test.describe("Go to Image Optimizer page  ", () => {
 
   test("Test Image Optimizer In a Image ", async ({ page }) => {
     // await page.waitForTimeout(6000);
-    const buttons = await page.locator('table tr:nth-of-type(2) ').allTextContents();
+    // const buttons = await page.locator('table tr:nth-of-type(2) ').allTextContents();
   });
 });
