@@ -37,19 +37,34 @@ test.describe("Go to Image Optimizer page  ", () => {
 
   test("Test Image Optimizer In a Image ", async ({ page }) => {
     await page.waitForTimeout(6000);
-    let data = await dashboardLocator.locator("tr[id='447445769'] td:nth-child(4) span span:nth-child(2)").innerText();  // for optimized status
-    // let data = await dashboardLocator.locator("tr[id='447445769'] td:nth-child(4) span span").innerText(); // for not optimized status
-    if (data == "Optimized") {
-      await dashboardLocator.locator("tr[id='447445769'] div[class='Polaris-ButtonGroup Polaris-ButtonGroup--noWrap'] div:nth-child(2) span:nth-child(1) button:nth-child(1) span:nth-child(1) span:nth-child(1) svg").click();
-      let not_optimized = await dashboardLocator.locator("tr[id='447445769'] td:nth-child(4) span span:nth-child(2)").getByText("Not Optimized");
-      await expect(not_optimized).toBeVisible();
-    }else if(data == "Not Optimized"){
-      await dashboardLocator.locator("tr[id='447445769'] div[class='Polaris-ButtonGroup Polaris-ButtonGroup--noWrap'] div:nth-child(1) span:nth-child(1) button:nth-child(1) span:nth-child(1) span:nth-child(1) svg").click();
-      let optimized = await dashboardLocator.locator("tr[id='447445769'] td:nth-child(4) span span:nth-child(2)").getByText("Optimized");
-      await expect(optimized).toBeVisible();
-    }else{
-      console.log("Image is in progress");
-    }
+
+    await dashboardLocator.locator("tr[id='447445769'] div[class='Polaris-ButtonGroup Polaris-ButtonGroup--noWrap'] div:nth-child(1) span:nth-child(1) button:nth-child(1) span:nth-child(1) span:nth-child(1) svg").click();
+    let optimized447445769 = await dashboardLocator.locator("tr[id='447445769'] td:nth-child(4) span span:nth-child(2)").getByText("Optimized");
+    await expect(optimized447445769).toBeVisible();
+
+    await dashboardLocator.locator("tr[id='447445769'] div[class='Polaris-ButtonGroup Polaris-ButtonGroup--noWrap'] div:nth-child(2) span:nth-child(1) button:nth-child(1) span:nth-child(1) span:nth-child(1) svg").click();
+    let not_optimized447445769 = await dashboardLocator.locator("tr[id='447445769'] td:nth-child(4) span span").getByText("Not Optimized");
+    await expect(not_optimized447445769).toBeVisible();
+
+
+    await dashboardLocator.locator("tr[id='447445768'] div[class='Polaris-ButtonGroup Polaris-ButtonGroup--noWrap'] div:nth-child(1) span:nth-child(1) button:nth-child(1) span:nth-child(1) span:nth-child(1) svg").click();
+    let optimized447445768 = await dashboardLocator.locator("tr[id='447445768'] td:nth-child(4) span span:nth-child(2)").getByText("Optimized");
+    await expect(optimized447445768).toBeVisible();
+
+    await dashboardLocator.locator("tr[id='447445768'] div[class='Polaris-ButtonGroup Polaris-ButtonGroup--noWrap'] div:nth-child(2) span:nth-child(1) button:nth-child(1) span:nth-child(1) span:nth-child(1) svg").click();
+    let not_optimized447445768 = await dashboardLocator.locator("tr[id='447445768'] td:nth-child(4) span span").getByText("Not Optimized");
+    await expect(not_optimized447445768).toBeVisible();
+
+
+    await dashboardLocator.locator("tr[id='447445767'] div[class='Polaris-ButtonGroup Polaris-ButtonGroup--noWrap'] div:nth-child(1) span:nth-child(1) button:nth-child(1) span:nth-child(1) span:nth-child(1) svg").click();
+    let optimized447445767 = await dashboardLocator.locator("tr[id='447445767'] td:nth-child(4) span span:nth-child(2)").getByText("Optimized");
+    await expect(optimized447445767).toBeVisible();
+
+    await dashboardLocator.locator("tr[id='447445767'] div[class='Polaris-ButtonGroup Polaris-ButtonGroup--noWrap'] div:nth-child(2) span:nth-child(1) button:nth-child(1) span:nth-child(1) span:nth-child(1) svg").click();
+    let not_optimized447445767 = await dashboardLocator.locator("tr[id='447445767'] td:nth-child(4) span span").getByText("Not Optimized");
+    await expect(not_optimized447445767).toBeVisible();
+
+    
   });
 
 
