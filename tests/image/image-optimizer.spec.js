@@ -67,6 +67,27 @@ test.describe("Go to Image Optimizer page  ", () => {
     
   });
 
+  // bulk image optimizer 
+
+  test("Test Image Bulk Optimizer In a Image ", async ({ page }) => {
+    await page.waitForTimeout(6000);
+
+    await dashboardLocator.locator("input[id=':r11:']").click();
+    await page.waitForTimeout(2000);
+    await dashboardLocator.locator("div[class='Polaris-BulkActions__BulkActionsLayout'] div:nth-child(2) button:nth-child(1) span:nth-child(1)").click();
+    await dashboardLocator.locator(".Polaris-Button.Polaris-Button--pressable.Polaris-Button--variantPrimary.Polaris-Button--sizeSlim.Polaris-Button--textAlignCenter").click();
+
+    // need to check optimization status here 
+
+    await page.waitForTimeout(12000);
+    await dashboardLocator.locator("input[id=':r11:']").click();
+    await dashboardLocator.locator("div[class='Polaris-BulkActions__BulkActionsLayout'] div:nth-child(1) button:nth-child(1) span:nth-child(1)").click();    
+
+    //need to check restore status her 
+
+    
+  });
+
 
 
 });

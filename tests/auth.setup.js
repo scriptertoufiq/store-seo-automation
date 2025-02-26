@@ -13,7 +13,7 @@ setup('authenticate', async ({ page }) => {
     await page.getByLabel('Email').fill(email);
     await page.getByRole('button', { name: 'Continue with email' }).click();
     await page.waitForTimeout(40000);
-    await page.getByLabel('Password').type(password);
+    // await page.getByLabel('Password').type(password);
     // await page.getByText('You are offline Reconnect or refresh the page to log in. Log in Continue to').click();
     // await page.getByRole('button', { name: 'Log in' }).click();
 
