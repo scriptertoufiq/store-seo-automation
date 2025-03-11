@@ -83,7 +83,7 @@ test.describe("Go to Image Optimizer page  ", () => {
     await dashboardLocator.locator("input[id=':r11:']").click();
     await dashboardLocator.locator("div[class='Polaris-BulkActions__BulkActionsLayout'] div:nth-child(1) button:nth-child(1) span:nth-child(1)").click();    
 
-    //need to check restore status her 
+    //need to check restore status here
 
     
   });
