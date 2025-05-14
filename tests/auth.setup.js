@@ -12,7 +12,7 @@ setup('authenticate', async ({ page }) => {
     await page.goto(`${baseUrl}`);
     await page.getByLabel('Email').fill(email);
     await page.getByRole('button', { name: 'Continue with email' }).click();
-    await page.waitForTimeout(40000);
+    await page.waitForTimeout(20000);
     // await page.getByLabel('Password').type(password);
     // await page.getByText('You are offline Reconnect or refresh the page to log in. Log in Continue to').click();
     // await page.getByRole('button', { name: 'Log in' }).click();
@@ -26,7 +26,7 @@ setup('authenticate', async ({ page }) => {
     // // Alternatively, you can wait until the page reaches a state where all cookies are set.
     await expect(page.getByText('Setup guide')).toBeVisible();
 
-    // End of authentication steps.
+    // End of authentication steps.koiWE$%thisNow#4
     // await page.waitForTimeout(30000);
     await page.context().storageState({ path: authFile });
 });

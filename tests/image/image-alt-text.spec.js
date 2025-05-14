@@ -29,9 +29,16 @@ test.describe("Go to Image Alt Text Generate page  ", () => {
      }
      // navigate to storeseo Image optimizer dashboard again
      await page.getByRole("link", { name: "Image Alt Text Generator" }).click();
+     
+     
    });
 
-
+  test("Bulk Image Alt Text Generator ", async ({ page }) => {
+    
+    await page.waitForTimeout(7000);
+    // await dashboardLocator.locator("input[id=':r8:']").click();
+    
+  });
 
 
 });
